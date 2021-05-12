@@ -1,5 +1,14 @@
 # DSAI-HW3-2021
 
+[![hackmd-github-sync-badge](https://hackmd.io/jjL5vjR9QzmEhlYfRjmzyw/badge)](https://hackmd.io/jjL5vjR9QzmEhlYfRjmzyw)
+
+### Usage
+
+```shell 
+python main.py
+```
+
+
 ### Source
 
   - [Slide](https://docs.google.com/presentation/d/1JW27_5HXYZhqWmgvDhtXBaFTOfksO_dS/edit#slide=id.p1)
