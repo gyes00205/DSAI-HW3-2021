@@ -8,6 +8,43 @@
 python main.py
 ```
 
+### Data Analyze
+
+The below is the generation and consumption graph. The green line is generation and the red line is consumption.
+![](https://i.imgur.com/kiO9UpN.png)
+![](https://i.imgur.com/amj7akX.png)
+![](https://i.imgur.com/vE9kIyF.png)
+
+### Model
+
+We use auto_arima to predict the following 24 hours.
+
+* Read csv file:
+    ```python 
+    df_generation = pd.read_csv(args.generation)
+    df_consumption = pd.read_csv(args.consumption)
+    ```
+* Train model:
+    ```python 
+    arima_generation = auto_arima(df_generation["generation"], seasonal=True)
+    arima_consumption = auto_arima(df_consumption["consumption"], seasonal=True)
+    ```
+* Predict:
+    ```python 
+    pred_generation = arima_generation.predict(n_periods=24)
+    pred_consumption = arima_consumption.predict(n_periods=24)
+    ```
+* Action:
+    
+    If `result < 0`, buy the power. Else sell the power.
+    ```python 
+    result = round(pred_generation[i] - pred_consumption[i], 2)
+    print(result)
+    if result < 0:
+        data.append([nextDay, "buy", 2.5, (result * -1)])
+    else:
+        data.append([nextDay, "sell", 1.5, result])
+    ```
 
 ### Source
 
